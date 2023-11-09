@@ -1,36 +1,30 @@
-import React from "react";
+import React from 'react';
 
-class Counter extends React.Component {
-  constructor(props) {
+class App extends React.Component {
+
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props){
     super(props);
-
-    this.state = { count: 5 };
-    this.handleDecrement = this.handleDecrement.bind(this);
-    this.handleIncrement = this.handleIncrement.bind(this);
+    this.state = {location: 'lisbon'};
+    // Class Component 一定要記得method bind to this，不然會沒有辦法動作
+    this.fetchWeather = this.fetchWeather.bind(this)
   }
 
-  handleDecrement() {
-    this.setState((curState) => {
-      return { count: curState.count - 1 };
-    })
+  fetchWeather() {
+    console.log('Loading data...')
+    console.log(this.state.location)
   }
 
-  handleIncrement() {
-    this.setState((curState) => {
-      return { count: curState.count + 1 };
-    })
-  }
   render() {
-    const date = new Date('june 21 2017');
-    date.setDate(date.getDate() + this.state.count);
-    return (
-      <div style={{ fontSize: "15rem" }}>
-        <button style={{ fontSize: "10rem" }} onClick={this.handleDecrement}>-</button>
-        <span>{date.toDateString()} [{this.state.count}]</span>
-        <button style={{ fontSize: "10rem" }} onClick={this.handleIncrement}>+</button>
+
+    return(<div className='App'>
+      <h1>Classy Weather</h1>
+      <div>
+        <input type='text' placeholder='Search from location...' value={this.state.location} onChange={(e)=>{this.setState({ location: e.target.value })}}></input>
       </div>
-    );
+      <button onClick={this.fetchWeather}>Get Weather</button>
+    </div>)
   }
 }
 
-export default Counter;
+export default App;
