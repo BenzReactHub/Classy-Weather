@@ -33,22 +33,20 @@ function formatDay(dateStr) {
 }
 
 class App extends React.Component {
-  state = {
-    location: "lisbon",
-    isLoading: false,
-    displayLocation: "",
-    weather: {},
-  };
-  // 如果使用箭頭函數，就可以不用bind 跟建構函數了
-  // constructor(props) {
-  //   super(props);
-  //   // Class Component 一定要記得method bind to this，不然會沒有辦法動作
-  //   this.fetchWeather = this.fetchWeather.bind(this);
-  // }
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: "lisbon",
+      isLoading: false,
+      displayLocation: "",
+      weather: {},
+    };
+    // Class Component 一定要記得method bind to this，不然會沒有辦法動作
+    this.fetchWeather = this.fetchWeather.bind(this);
+  }
 
-  // async fetchWeather() {
-  // 我們使用箭頭函數就可以不用bind method了
-  fetchWeather = async () => {
+  async fetchWeather() {
     try {
       this.setState({ isLoading: true });
       // 1) Getting location (geocoding)
