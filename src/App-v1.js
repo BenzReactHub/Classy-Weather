@@ -71,7 +71,7 @@ class App extends React.Component {
       const weatherData = await weatherRes.json();
       this.setState({ weather: weatherData.daily });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     } finally {
       this.setState({ isLoading: false });
     }

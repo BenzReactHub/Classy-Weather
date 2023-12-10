@@ -75,7 +75,7 @@ export default class App extends React.Component {
       const weatherData = await weatherRes.json();
       this.setState({ weather: weatherData.daily });
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     } finally {
       this.setState({ isLoading: false });
     }
@@ -107,17 +107,6 @@ export default class App extends React.Component {
           location={this.state.location}
           onChangeLocation={this.setLocation}
         />
-        {/* <div>
-          <input
-            type="text"
-            placeholder="Search from location..."
-            value={this.state.location}
-            onChange={(e) => {
-              this.setState({ location: e.target.value });
-            }}
-          ></input>
-        </div> */}
-        {/* <button onClick={this.fetchWeather}>Get Weather</button> */}
 
         {this.state.isLoading && <p className="loader">Loading...</p>}
         {this.state.weather.weathercode?.length > 0 && (
@@ -150,7 +139,7 @@ class Weather extends React.Component {
   // like useEffect cleaning up function
   // 這裡是真實組件被卸載之後運行，在組件消失並且被銷毀之後，而不是在渲染之間
   componentWillUnmount() {
-    console.log('Weather will unmount')
+    // console.log('Weather will unmount')
   }
 
   render() {
